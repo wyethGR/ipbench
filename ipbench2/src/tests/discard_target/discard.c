@@ -246,7 +246,7 @@ int discard_marshal(void **data, size_t *size, double running_time)
 
 	tosend = malloc(sizeof *tosend);
 	if (tosend == NULL)
-		printf("Can't malloc %u bytes", sizeof *tosend);
+		printf("Can't malloc %lu bytes", sizeof *tosend);
 
 
 	tosend->size    = htonll(result.size);
