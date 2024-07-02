@@ -204,7 +204,6 @@ generate_load(int sock)
 
 int discard_setup(char *hostname, int port, char *arg)
 {
-	int flag;
 	int fd;
 
 	dbprintf("discard setup begin (target %s [port %d]).\n", hostname, port);
