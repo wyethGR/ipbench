@@ -437,9 +437,6 @@ absolute_deviation_uint64(uint64_t *samples, unsigned n, uint64_t median)
  * client.  Here you can loop through the array and aggreage or
  * otherwise do interesting things.  Print out your results in any
  * particular format here.
- *
- * target_data comes from the target machine, or if no target testing
- * was done is NULL.
  */
 int
 nfs_latency_output(struct client_data data[], int nelem)
