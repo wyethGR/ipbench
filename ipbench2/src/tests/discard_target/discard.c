@@ -239,7 +239,7 @@ int discard_stop(struct timeval *stop)
 	return 0;
 }
 
-int discard_marshal(void **data, size_t *size, double running_time)
+int discard_marshal(char **data, int *size, double running_time)
 {
 	struct discard_result *tosend;
 
@@ -258,13 +258,13 @@ int discard_marshal(void **data, size_t *size, double running_time)
 	tosend->eagains = htonll(result.eagains);
 	tosend->badsends = htonll(result.badsends);
 
-	*data = tosend;
+	*data = (char *) tosend;
 	*size = sizeof *tosend;
 
 	return 0;
 }
 
-void discard_marshal_cleanup(void **data)
+void discard_marshal_cleanup(char **data)
 {
 	free(*data);
 }
@@ -272,8 +272,8 @@ void discard_marshal_cleanup(void **data)
 /*
  * Run in ipbench
  */
-int discard_unmarshal(void *input, size_t input_len, void **data,
-		       size_t *data_len)
+int discard_unmarshal(char *input, int input_len, char **data,
+		       int *data_len)
 {
 	struct discard_result *result = (struct discard_result *)(input);
 	struct discard_result *theresult;
@@ -289,7 +289,8 @@ int discard_unmarshal(void *input, size_t input_len, void **data,
 	}
 
 	*data_len = sizeof(struct discard_result);
-	theresult = *data = malloc(*data_len);
+  *data = malloc(*data_len);
+	theresult = (struct discard_result *) *data;
 	if (*data == NULL)
 		printf("Out of buffer space.\n");
 
@@ -306,13 +307,13 @@ int discard_unmarshal(void *input, size_t input_len, void **data,
 	return 0;
 }
 
-void discard_unmarshal_cleanup(void **data)
+void discard_unmarshal_cleanup(char **data)
 {
 	free(*data);
 	*data = NULL;
 }
 
-int discard_output(struct client_data *target_data, struct client_data data[], int nelem)
+int discard_output(struct client_data data[], int nelem)
 {
 
 	int i = 0;
@@ -353,9 +354,6 @@ int discard_output(struct client_data *target_data, struct client_data data[], i
 #endif
 	printf("%lu,%lu,%lu",
 	       total_requested_throughput, total_sent_throughput, packet_size);
-	if (target_data != NULL) {
-		printf(",%s", (char*)target_data->data);
-	}
 	printf("\n");
 
 	return 0;

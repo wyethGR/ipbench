@@ -144,7 +144,7 @@ int load_plugin(const char *plugin_name)
         }
 
 	if (ipbench_plugin == NULL)
-		return ipbench_plugin_error(ipbench_RuntimeError, "Can not find plugin", plugin_name);
+		return ipbench_plugin_error(ipbench_RuntimeError, "Can not find plugin", (char *) plugin_name);
 	return 0;
 }
 
