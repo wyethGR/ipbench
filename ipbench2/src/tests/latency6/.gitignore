@@ -1,0 +1,8 @@
+.deps
+.libs
+Makefile
+Makefile.in
+liblatency6.la
+liblatency6_la-ip.lo
+liblatency6_la-latency.lo
+liblatency6_la-raw.lo
