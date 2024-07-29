@@ -203,7 +203,7 @@ struct ipbench_plugin ipbench_plugin =
 {
 	.magic = "IPBENCH_PLUGIN",
 	.name = "cpu_target_lukem",
-	.id = 0x20,
+	.id = 0x21,
 	.descr = "Measure CPU usage on the target (lukem version)",
 	.default_port = 7,
 	.setup = &cpu_target_lukem_setup,

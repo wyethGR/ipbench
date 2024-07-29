@@ -777,8 +777,8 @@ int latency_setup_controller(char *arg)
 struct ipbench_plugin ipbench_plugin = 
 {
 	.magic = "IPBENCH_PLUGIN",
-	.name = "latency",
-	.id = 0x2,
+	.name = "latency-check",
+	.id = 0x6,
 	.descr = "Latency Tests",
 	.default_port = 7,
 	.setup = &latency_setup,
